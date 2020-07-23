@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# enable
+#defaults write -g CGFontRenderingFontSmoothingDisabled -bool NO
+# Strong font smoothing defaults command:
+#defaults -currentHost write -globalDomain AppleFontSmoothing -int 3
+# Medium font smoothing defaults command:
+#defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+# Light font smoothing defaults command:
+#defaults -currentHost write -globalDomain AppleFontSmoothing -int 1
+
+# disable
+#defaults -currentHost delete -globalDomain AppleFontSmoothing
+#defaults write -g CGFontRenderingFontSmoothingDisabled -bool YES

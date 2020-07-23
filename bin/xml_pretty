@@ -1,0 +1,19 @@
+#!/usr/bin/python
+
+import xml.dom.minidom
+from sys import argv
+
+script, xmlsource, outfile = argv
+
+xml = xml.dom.minidom.parse( xmlsource) # or xml.dom.minidom.parseString(xml_string)
+pretty_xml_as_string = xml.toprettyxml()
+
+
+#print pretty_xml_as_string
+
+file = open(outfile, 'w')
+file.truncate()
+file.write(pretty_xml_as_string.encode("utf-8"))
+file.close()
+
+print "written to %s" %( outfile )

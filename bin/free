@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# emulate free on mac
+if [ "$(uname)" == Darwin ]; then
+    echo "use vm_stat to show free memory, then executes vm_stat 2"
+    echo "vm_stat | perl -ne '/page size of (\d+)/ and $size=$1; /Pages\s+([^:]+)[^\d]+(\d+)/ and printf("%-16s % 16.2f Mi\n", "$1:", $2 * $size / 1048576);'"
+    vm_stat | perl -ne '/page size of (\d+)/ and $size=$1; /Pages\s+([^:]+)[^\d]+(\d+)/ and printf("%-16s % 16.2f Mi\n", "$1:", $2 * $size / 1048576);'
+    vm_stat 2
+else
+    free $*
+fi

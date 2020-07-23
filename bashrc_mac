@@ -1,0 +1,25 @@
+# brew installed binaries overwriting mac installs
+## universal ctags
+export PATH="/usr/local/opt/sqlite/bin:$PATH"
+export PATH="/usr/local/opt/universal-ctags/bin:$PATH"
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+# rust
+export PATH="$PATH:$HOME/.cargo/bin"
+
+
+# repos
+. $HOME/pyvenv/default-3.7/bin/activate
+# enable bash completion for repos
+eval "$(_REPOS_COMPLETE=source repos)"
+
+
+if ! [[ -n "$(ps -ef | grep "$SSH_AGENT_PID[ ]")" ]]
+then
+    echo "import ssh-agent not found, starting new agent process.."
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/id_rsa
+    ssh-add ~/.ssh/aka64
+    export_agent
+fi
+#####
+

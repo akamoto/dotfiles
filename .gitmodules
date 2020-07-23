@@ -1,0 +1,57 @@
+[submodule "vim/pack/moto/start/vim-colors-solarized"]
+	path = vim/pack/moto/start/vim-colors-solarized
+	url = https://github.com/micha/vim-colors-solarized
+[submodule "vim/pack/moto/start/fugitive"]
+	path = vim/pack/moto/start/fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/pack/moto/start/nerdtree"]
+	path = vim/pack/moto/start/nerdtree
+	url = https://github.com/preservim/nerdtree
+[submodule "vim/pack/moto/start/nerdtree-git-plugin"]
+	path = vim/pack/moto/start/nerdtree-git-plugin
+	url = https://github.com/Xuyuanp/nerdtree-git-plugin.git
+[submodule "vim/pack/moto/start/vim-buffergator"]
+	path = vim/pack/moto/start/vim-buffergator
+	url = https://github.com/jeetsukumaran/vim-buffergator
+[submodule "vim/pack/moto/start/vim-obsession"]
+	path = vim/pack/moto/start/vim-obsession
+	url = https://github.com/tpope/vim-obsession.git
+[submodule "vim/pack/moto/start/vim-terraform"]
+	path = vim/pack/moto/start/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git
+[submodule "vim/pack/moto/start/vim-tmux-navigator"]
+	path = vim/pack/moto/start/vim-tmux-navigator
+	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "vim/pack/moto/start/youcompleteme"]
+	path = vim/pack/moto/start/youcompleteme
+	url = https://github.com/valloric/youcompleteme
+[submodule "vim/pack/moto/start/tabline.vim"]
+	path = vim/pack/moto/start/tabline.vim
+	url = git://github.com/mkitt/tabline.vim.git
+[submodule "tmux/plugins/tmux-continuum"]
+	path = tmux/plugins/tmux-continuum
+	url = https://git::@github.com/tmux-plugins/tmux-continuum
+[submodule "tmux/plugins/tmux-copycat"]
+	path = tmux/plugins/tmux-copycat
+	url = https://git::@github.com/tmux-plugins/tmux-copycat
+[submodule "tmux/plugins/tmux-resurrect"]
+	path = tmux/plugins/tmux-resurrect
+	url = https://git::@github.com/tmux-plugins/tmux-resurrect
+[submodule "tmux/plugins/tpm"]
+	path = tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm
+[submodule "tmux/plugins/vim-tmux-navigator"]
+	path = tmux/plugins/vim-tmux-navigator
+	url = https://git::@github.com/christoomey/vim-tmux-navigator
+[submodule "vim/pack/moto/start/gundo"]
+	path = vim/pack/moto/start/gundo
+	url = https://github.com/sjl/gundo.vim
+[submodule "vim/pack/moto/start/vim-surround"]
+	path = vim/pack/moto/start/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim/pack/moto/start/nerdcommenter"]
+	path = vim/pack/moto/start/nerdcommenter
+	url = https://github.com/scrooloose/nerdcommenter
+[submodule "vim/pack/moto/start/vim-repeat"]
+	path = vim/pack/moto/start/vim-repeat
+	url = https://github.com/tpope/vim-repeat

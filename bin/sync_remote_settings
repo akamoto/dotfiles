@@ -1,0 +1,61 @@
+#!/bin/bash
+
+echo "no longer in use"
+exit
+
+#set -x
+set -e
+
+cd ~/remote_settings || exit
+
+if [ -z "$1" ]
+then
+    echo "provide hostname as argument"
+    exit
+else
+    hosts="$*"
+fi
+
+if [ -d "$host" ]
+then
+    echo "found additional files for host "$host", merging files"
+fi
+
+sync_files(){
+    #rsync -avHSx tmp/ $1:
+    host=$1
+    dir=$2
+    files="$(find $dir -type f)"
+    for file in $files
+    do
+        filename=${file/$dir/}
+        echo "syncing $file to $host:$filename"
+        scp $file $host:$filename
+    done
+}
+
+
+if [ -d tmp ];then rm -r tmp; fi
+
+base_files="$(find ./default -type f)"
+
+for host in $hosts
+do
+    mkdir tmp
+    for file in $base_files
+    do
+        echo $file
+        filename="${file/\.\/default/}"
+        if [ -e "$host/$filename" ]
+        then
+            echo "Mergine $file with additional $host file"
+            cat $file $host/$filename > tmp/$filename
+        else
+            cat $file > tmp/$filename
+        fi
+    done
+    ssh-copy-id $host
+    sync_files $host tmp/
+    rm -r tmp
+done
+

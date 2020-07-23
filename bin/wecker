@@ -1,0 +1,92 @@
+#!/bin/bash
+# moto
+
+credentials="at wecker amixer readlink mplayer bash"
+if ! which $credentials >/dev/null
+then 
+  echo "  $credentials must be installed and in \$PATH" >&2
+  exit 2
+fi
+
+###
+# Vars
+me="$0"
+me_set="${me%.scharf}.scharf"
+vol_orig="$(amixer get Master | awk '/%/ {print $3}')"
+to_play_failsafe='/home/moto/media/mucke/mucke/mp3/Colour_Haze/[2008] All/07 - All.mp3'
+#to_play='/home/moto/media/mucke/neu/mp3/Melvins - 31 albums/Crybaby/The Melvins - The Crybaby - Divorced.mp3'
+[[ ! -f $to_play ]] && to_play="$to_play_failsafe"
+
+###
+# Functions
+check_atq(){
+  while read i 
+  do 
+    at -c $i | grep -q thisiswecker && echo -n "$i "
+  done < <( atq | awk '{print $1}' )
+}
+
+set_alarm(){
+  tmpfile=/tmp/$RANDOM
+  echo -e "#thisiswecker\n/bin/bash $me_set" > $tmpfile
+  readlink $me_set >/dev/null 2>&1 || ln $me $me_set 2>&1 | grep -v 'exists'
+  at -f $tmpfile $* 2>&1 | grep -v 'warning.*bin/sh'
+  rm $tmpfile
+}
+
+raise_vol(){
+  for ((vol=10; vol < 101; vol += 2))
+  do
+    amixer set Master ${vol}%
+    sleep 10
+  done
+}
+
+reset_vol(){ amixer set Master $vol_orig ; }
+
+trap_sig(){
+ reset_vol
+}
+
+###
+# Main
+if [[ $me != $me_set ]]
+then 
+  [[ -z $1 ]] && echo "When ?" >&2 && exit 1 
+  [[ $1 == 'kill' ]] && {
+    wecker_pids="$( ps -ef | grep wecker | awk '/wecker\.scharf/ {print $2}' )"
+    kill $wecker_pids
+    kill $(ps -ef | grep "$wecker_pids" | grep mplayer | awk '{print $2}' )
+    # don't know the original volume here.. hence the trap
+    exit
+  }
+  ids=$(check_atq) 
+  if [[ "$ids" != '' ]]
+  then
+    echo "Remove all priviously set wecker ? " 
+    select rm_p in yes no "more info"
+    do
+      case $rm_p in
+        "more info")
+          echo " relevant job id(s): $ids "
+          atq
+        ;;
+        yes)
+          atrm $ids
+          break 
+        ;;
+        no)
+          break 
+        ;;
+      esac
+    done
+    echo ""
+  fi  
+  set_alarm $* || echo "Error, check atq " && exit 2
+else
+  #trap "rm -f .newmail.lock" 1 2 3 13 15
+  trap trap_sig 1 2 3 13 15
+  raise_vol >/dev/null &
+  mplayer "$to_play" 1>/dev/null
+  reset_vol
+fi

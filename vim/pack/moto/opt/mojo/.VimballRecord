@@ -1,0 +1,1 @@
+mojo.vba: call delete('/home/danielt/.vim/bundle/mojo/ftdetect/epl.vim')|call delete('/home/danielt/.vim/bundle/mojo/ftdetect/epl.vim')|call delete('/home/danielt/.vim/bundle/mojo/syntax/epl.vim')|call delete('/home/danielt/.vim/bundle/mojo/after/syntax/perl/MojoliciousLite.vim')

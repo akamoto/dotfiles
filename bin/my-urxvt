@@ -1,0 +1,40 @@
+#!/bin/bash
+
+font="xft:ProggyCleanTTSZ,xft:Bitstream Vera Sans Mono:pixelsize=10.5"
+#font="xft:ProggyVector:pixelsize=11,xft:ProggyCleanTTSZ,xft:Bitstream Vera Sans Mono:pixelsize=10.5"
+#font="xft:Bitstream Vera Sans Mono:pixelsize=10.5"
+if [[ ${0##*/} == my-urxvt ]]
+then
+  :
+elif [[ ${0##*/} == my-urxvt-small ]]
+then
+  font="xft:Bitstream Vera Sans Mono:pixelsize=10"
+elif [[ ${0##*/} == my-urxvt-read ]]
+then
+  font="xft:Bitstream Vera Sans Mono:pixelsize=12.5"
+fi
+
+#font="xft:Bitstream Vera Sans Mono:pixelsize=15"
+
+#ugly white = PeachPuff NavajoWhite LemonChiffon BlanchedAlmond Wheat
+#white = WhiteSmoke
+#no contrast = Tan IndianRed
+# doesn't work w tint=darkslategray -> CadetBlue SeaGreen MediumAquaMarine
+# pink: Orchid
+
+low_contrast=( DodgerBlue MediumSeaGreen RosyBrown DarkSalmon DarkSeaGreen SandyBrown LightBlue LightSeaGreen LightSkyBlue DarkGoldenRod Peru Pink DarkKhaki )
+
+[ -z $foreground ] && random=$(( $RANDOM % ${#low_contrast[@]} ))
+export foreground=${low_contrast[$random]}
+export foreground="#dcdcdc"
+export foreground="#c0c0c0"
+
+tint=DarkSlateGray #DarkKhaki #grey#MediumSeaGreen
+
+transparency=" -tr -tint $tint -fade 60 -fadecolor DarkGoldenRod -sh 50"
+#transparency=" -tint $tint -fade 5 -fadecolor grey "
+background="black"
+
+urxvt -geometry 80x24  -cr grey +sb -is -sbg -j -sl 2000 +si \
+  -fg $foreground -bg $background -fn "$font" $transparency \
+  $* &

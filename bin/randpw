@@ -1,0 +1,26 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+# All printable ascii characters
+my @chars = (32..126);
+my $num_chars = @chars;
+
+# Passwords must be 50 chars long, unless specified otherwise
+my $length=$ARGV[0] || 50;
+
+while (1) {
+        my $password;
+        foreach (1..$length) {
+                $password .= chr($chars[int(rand($num_chars))]);
+        }
+
+        # Password must have lower, upper, numeric, and 'other'
+        if (    $password =~ /[a-z]/
+            and $password =~ /[A-Z]/
+            and $password =~ /[0-9]/
+            and $password =~ /[^a-zA-Z0-9]/ ) {
+                print $password, "\n";
+                exit;
+        }
+}

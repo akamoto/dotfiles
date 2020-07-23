@@ -1,0 +1,25 @@
+# set variable identifying the chroot you work in (used in the prompt below)
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+
+# If this is an xterm set the title to user@host:dir
+case "$TERM" in
+xterm*|rxvt*)
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    ;;
+*)
+    ;;
+esac
+
+if ! [[ -d /proc/$SSH_AGENT_PID ]]
+then
+    echo "import ssh-agent not found, starting new agent process.."
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/id_rsa
+    ssh-add ~/.ssh/aka64
+    export_agent
+fi
+#####

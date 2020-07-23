@@ -1,0 +1,76 @@
+#!/bin/bash
+
+#set -x
+
+set -e
+dir="$1"
+target="$2"
+
+if [ "$file" = '-h' ];then
+    echo "rsync_dir_on_change dir/ qqwebpz_test@ltjonpoc:local/bin/"
+    exit
+fi
+
+if [[ "$2" == '' ]]
+then
+    echo "no target argument, exiting"
+    exit
+elif [[ ! -d "$dir" ]]
+then
+    echo "no directory \"$dir\", exiting"
+    exit
+fi
+
+echo "rsync -avHSx --delete $dir/ $target/"
+echo "using 5sec sleep"
+echo -n "Accept rsync command (y/N): "
+read a
+
+if ! [[ "$a" =~ [yY] ]];
+then
+    echo "Answer was \"$a\", exiting."
+    exit
+fi
+
+
+if [ "$(uname)" == Darwin ]; then
+    darwin=1
+fi
+while sleep 5
+do
+    lof="$(find $dir/ -type f)"
+    i=0
+    for file in $lof
+    do
+        files[$i]="$file"
+        if ((darwin))
+        then
+            mtimes[$((i++))]=$(stat -f "%Sm" -t %s "$file")
+        else
+            mtimes[$((i++))]=$(stat --format=%Y "$file")
+        fi
+    done
+
+    for (( i=0; i<${#files[@]}; i++ ))
+    do
+        if [[ "${files[$i]}" != "${files_old[$i]}" ]]; then
+            # new file or file removed
+            changed=1
+            break
+        elif [[ ${mtimes[$i]} -ne ${mtimes_old[$i]} ]]; then
+            # file was modified
+            changed=1
+            break
+        fi
+    done
+
+    if ((changed))
+    then
+        echo "$(date +"%Y-%m-%d %H:%M"): $dir/ -> $target/"
+        rsync -avHSx --delete $dir/ $target/
+    fi
+
+    files_old=("${files[@]}")
+    mtimes_old=("${mtimes[@]}")
+    changed=0
+done

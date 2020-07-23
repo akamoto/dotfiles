@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ $1 == 'ard' ]
+then
+    chan='Das Erste(BR)'
+elif [ $1 == 'zdf' ]
+then
+    chan='ZDF(ZDFmobil)'
+fi
+
+mplayer -vf yadif=0 "dvb://$chan"

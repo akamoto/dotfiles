@@ -1,0 +1,36 @@
+"set gfn=Bitstream\ Vera\ Sans\ Mono\ 15
+set guioptions-=m
+set guioptions-=T
+set guioptions-=r
+set guioptions-=R
+set guioptions-=l
+set guioptions-=L
+
+set gfn=Inconsolata\ 13
+
+let g:treeExplVertical=1
+let NERDChristmasTree=1
+
+colorscheme molokai
+
+set list
+
+if v:version >= 703
+    set relativenumber
+endif
+
+" Paste from clipboard with Shift+Insert
+inoremap <S-Insert> <Esc>"*gpa
+" Paste from the other clipboard with Ctrl+V
+inoremap <C-v> <Esc>"+gpa
+
+set guicursor=a:blinkon0
+
+"set lines=40
+"set columns=120
+"set encoding=UTF-8
+"filetype plugin on
+"syntax on
+"set dir=~/tmp
+"highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+"match OverLength /\%81v.*/

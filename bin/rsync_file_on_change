@@ -1,0 +1,21 @@
+#!/bin/bash
+
+file="$1"
+target="$2"
+
+if [ "$file" = '-h' ];then 
+    echo "rsync_file_on_change create_monitoring_config.pl qqwebpz_test@ltjonpoc:local/bin/"
+    exit
+fi
+
+while sleep 1; do newsum=$(sum "$file")
+    if [ "$oldsum" != "$newsum" ]; then 
+        echo "$(date +"%Y-%m-%d %H:%M"): $file -> $target"
+        if [[ "$target" =~ ':' ]];then
+          rsync -v $file ${target}$file
+        else
+            rsync -v $file $target:$file
+        fi
+    fi
+    oldsum="$newsum"
+done

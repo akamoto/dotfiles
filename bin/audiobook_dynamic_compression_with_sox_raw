@@ -1,0 +1,2 @@
+for i in *.mp3; do mpg123 -w $i.wav $i; sox $i.wav -t wav $i.compended.wav bass
+  -10 compand 0.3,1 6:-70,-60,-20 -10 -90 0.1 ; lame $i.compended.wav; done

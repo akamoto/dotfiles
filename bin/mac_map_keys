@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064},{"HIDKeyboardModifierMappingSrc":0x700000064,"HIDKeyboardModifierMappingDst":0x700000035}]}'
+
+# swap tilde/paragraph on internal keyboard int/magic
+#    "HIDKeyboardModifierMappingSrc":0x700000035,
+#    "HIDKeyboardModifierMappingDst":0x700000064},
+#    "HIDKeyboardModifierMappingSrc":0x700000064,
+#    "HIDKeyboardModifierMappingDst":0x700000035}
+# map tilde magic keyboard (is missing a key as well)
+#    "HIDKeyboardModifierMappingSrc":0x700000076,
+#    "HIDKeyboardModifierMappingDst":0x700000050}
+# map capslock to f18 for hammerspoon esc/hyper int/magic
+#    "HIDKeyboardModifierMappingSrc":0x700000039,
+#    "HIDKeyboardModifierMappingDst":0x70000006d},
+#hidutil property --matching '{"ProductID": 0x27b}' --set '{"UserKeyMapping":[
+hidutil property --set '{"UserKeyMapping":[
+{ "HIDKeyboardModifierMappingSrc":0x700000035,
+  "HIDKeyboardModifierMappingDst":0x700000064},
+{ "HIDKeyboardModifierMappingSrc":0x700000064,
+  "HIDKeyboardModifierMappingDst":0x700000035},
+{
+    "HIDKeyboardModifierMappingSrc":0x700000039,
+    "HIDKeyboardModifierMappingDst":0x70000006d}
+]}'
+
+# swap map paragraph to tilde on magic keyboard
+hidutil property --matching '{"ProductID":0x26c}' --set '{"UserKeyMapping":[
+{
+    "HIDKeyboardModifierMappingSrc":0x700000076,
+    "HIDKeyboardModifierMappingDst":0x700000050},
+{
+    "HIDKeyboardModifierMappingSrc":0x700000039,
+    "HIDKeyboardModifierMappingDst":0x70000006d}
+]}'
+
+# hp keyboard work
+hidutil property --matching '{"ProductID":0x24}' --set '{"UserKeyMapping":[
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e2,
+    "HIDKeyboardModifierMappingDst":0x7000000e3},
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e3,
+    "HIDKeyboardModifierMappingDst":0x7000000e2}
+]}'
+
+# cherry keyboard home
+hidutil property --matching '{"ProductID":0x11}' --set '{"UserKeyMapping":[
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e2,
+    "HIDKeyboardModifierMappingDst":0x7000000e3},
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e3,
+    "HIDKeyboardModifierMappingDst":0x7000000e2}
+]}'
+# magic keyboard as according to hammerspoon
+#-- show keyevents
+#-- hs.eventtap.new({hs.eventtap.event.types.keyUp},function(e)print(hs.inspect(e:getRawEventData()))end):start()
+#{
+#  CGEventData = {
+#    flags = 2097408,
+#    keycode = 76,
+#    type = 11
+#  },
+#  NSEventData = {
+#    characters = "",
+#    charactersIgnoringModifiers = "",
+#    keyCode = 76,
+#    modifierFlags = 2097408,
+#    type = 11,
+#    windowNumber = 0
+#  }
+#}
+

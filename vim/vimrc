@@ -1,0 +1,198 @@
+set runtimepath=~/.dotfiles/vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.dotfiles/vim/after
+set packpath=~/.dotfiles/vim,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,~/.dotfiles/vim/after
+
+set t_Co=256
+
+set mouse-=a
+set nocompatible
+set modelines=5
+set confirm
+
+set tabstop=8
+set shiftwidth=4
+set shiftround
+set smarttab
+set expandtab
+
+set encoding=utf-8
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmenu
+set wildmode=list:longest
+"set visualbell
+"set cursorline
+set ttyfast
+set ruler
+set backspace=indent,eol,start
+set laststatus=2
+set secure
+
+nnoremap <Leader>z :GundoToggle<CR>
+"nnoremap / /\v
+"vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+
+nnoremap <leader><space> :noh<cr>
+
+" TODO: interferes with jumplist navigation
+"nnoremap <tab> %  " jumps to next enclosure
+"vnoremap <tab> %  " jumps to next enclosure
+
+set wrap
+set textwidth=80
+set formatoptions=qrn1
+
+"set list
+set listchars=tab:▸\ ,eol:¬
+
+"au FocusLost * :wa
+
+nnoremap <leader>b :CtrlPBuffer<cr>
+nnoremap <leader>m :CtrlPMRUFiles<cr>
+let g:unite_winheight = 15
+
+" kill trailing spaces
+"nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+nnoremap <leader>a :Ack
+" fold tag? try it
+nnoremap <leader>ft Vatzf
+" rewrap paragraph
+nnoremap <leader>q gqip
+" reselect
+nnoremap <leader>V V`]
+
+" new horizontal split
+nnoremap <leader>w <C-w>s<C-w>j
+" new vertical split
+nnoremap <leader>v <C-w>v<C-w>l
+
+" window movement
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+"
+""taglist
+"nnoremap <silent> <F8> :TlistToggle<CR>
+
+nnoremap <leader>n :NERDTreeToggle<cr>
+
+"nnoremap <leader>jd :YcmCompleter GoTo<CR>
+nnoremap <C-]> :YcmCompleter GoTo<CR>
+"" Call YCM GoTo or vim-go GoTo depending on file type.
+"function! GoToDef()
+"    if &ft == 'go'
+"        call go#def#Jump()
+"    else
+"        execute 'YcmCompleter GoTo'
+"    endif
+"endfunction
+"nnoremap <leader>] :call GoToDef()<CR>
+
+syntax on
+
+let g:bufExplorerShowUnlisted=0
+
+let mojo_highlight_data = 1
+let g:snips_author="Markus Mueller"
+let g:snips_email="markus.mueller@wirecard.de"
+
+if v:version >= 703
+"    set relativenumber
+    set undofile
+    set undodir=~/.vim/undo
+    set colorcolumn=80,+0
+    set cryptmethod=blowfish
+    if &t_Co > 255
+        hi ColorColumn ctermbg=237
+    endif
+endif
+
+"map <F5> <ESC> call findindent#do()<CR>
+
+let NERDTreeIgnore=['\.un\~$', '\~$', '^\.git$', '^.svn$', '^blib$', '^_build$', 'pm_to_blib', '\.o$', '\.class$', '\.pyc$']
+
+let g:vikiHomePage = "/home/danielt/viki/Home.viki"
+
+let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])(blib)($|[/\\])|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
+
+if &t_Co > 255
+    set background=dark
+    "colorscheme molokai
+    let g:solarized_termcolors = 256
+    let g:solarized_termtrans = 1
+    colorscheme solarized
+else
+    colorscheme desert
+endif
+
+let g:ctrlp_map = '<Leader>p'
+let g:ctrlp_working_path_mode = 0
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd Syntax * syn match ExtraWhitespace /\s\+$/
+autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre /tmp/mutt-* :%s/^--$/--\ /e
+autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
+autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+
+" I am not sure whether tags is still the way to go.
+" e.g. youcompleteme seems to do fine without. LanguageServers?
+" 2020-02-14
+"au BufWritePost *.c,*.cpp,*.h,*.py,*.go silent! !ctags -R &
+
+"terraform
+autocmd BufNewFile,BufRead *.tf setlocal ts=2 sw=2 sts=2
+autocmd BufWritePost *.tf !terraform fmt %
+
+"set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/blib/*
+set wildignore+=.hg,.git,.svn                    " Version control
+set wildignore+=*.aux,*.out,*.toc                " LaTeX intermediate files
+set wildignore+=*.jpg,*.bmp,*.gif,*.png,*.jpeg   " binary images
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest " compiled object files
+set wildignore+=*.spl                            " compiled spelling word lists
+set wildignore+=*.sw?                            " Vim swap files
+set wildignore+=*.DS_Store                       " OSX bullshit
+
+set wildignore+=*.luac                           " Lua byte code
+set wildignore+=blib                             " perl build
+set wildignore+=local-lib                        " perl local-lib
+
+set wildignore+=*.pyc                            " Python byte code
+
+set backupskip=/tmp/*,/private/tmp/*"
+
+" Resize splits when the window is resized
+au VimResized * exe "normal! \<c-w>="
+
+
+set undodir=~/.vim/tmp/undo//     " undo files
+set backupdir=~/.vim/tmp/backup// " backups
+set directory=~/.vim/tmp/swap//   " swap files
+set backup                        " enable backups
+
+" EasyMotion
+let g:EasyMotion_do_mapping = 0
+
+nnoremap <silent> <Leader>f      :call EasyMotion#F(0, 0)<CR>
+onoremap <silent> <Leader>f      :call EasyMotion#F(0, 0)<CR>
+vnoremap <silent> <Leader>f :<C-U>call EasyMotion#F(1, 0)<CR>
+
+nnoremap <silent> <Leader>F      :call EasyMotion#F(0, 1)<CR>
+onoremap <silent> <Leader>F      :call EasyMotion#F(0, 1)<CR>
+vnoremap <silent> <Leader>F :<C-U>call EasyMotion#F(1, 1)<CR>
+
+onoremap <silent> <Leader>t      :call EasyMotion#T(0, 0)<CR>
+onoremap <silent> <Leader>T      :call EasyMotion#T(0, 1)<CR>
+
+let spec_chglog_format = "%a %b %d %Y Markus Mueller <mm@rbfh.de>"
+

@@ -1,0 +1,33 @@
+#!/bin/bash
+
+#set -x
+
+if [ "$1" == "" ]; then
+  echo "Need to supply a percentage"
+  exit 1
+else
+    req=$1
+fi
+
+sink=$( pacmd list-sinks | grep "* index:" | awk '{print $3}' )
+
+max=125
+curvol="$(
+    pacmd list-sinks | grep -A 15 "index: $sink" \
+    | awk '/volume: front/{ print $5 }' | sed 's/[%|,]//g'
+)"
+
+if [ $curvol -ge $max ] && [[ "$req" =~ \+ ]]
+then
+    req=$max
+fi
+
+if [[ "$req" =~ -|\+ ]]
+then
+    targetvol=$((curvol $req))
+else
+    targetvol=$req
+fi
+vol=$(perl -e "print int(65536 * ($targetvol / 100))")
+#echo "Setting volume to $1 ($vol)"
+pacmd set-sink-volume $sink $vol

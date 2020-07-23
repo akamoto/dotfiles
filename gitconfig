@@ -1,0 +1,45 @@
+[user]
+    name = Markus Mueller
+    email = moto@rbfh.de
+
+[push]
+	default = current
+
+[core]
+	trustctime = false
+	editor = vim
+	filemode = false
+
+[alias]
+    s = status
+    co = commit
+    last = log -1 --stat
+    cp = cherry-pick
+    cl = clone
+    ci = commit
+    st = status -sb
+    br = branch
+    sw = switch
+    unstage = reset HEAD --
+    dc = diff --cached
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+[color]
+    ui = true
+[credential]
+    helper = cache --timeout=3600
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+[mergetool]
+    keeptemporaries = false
+    keepbackups = false
+    prompt = false
+    trustexitcode = false
+
+#[url "https://oauth2:token@gitlab.wirecard-cloud.com/"]
+#    insteadOf = https://gitlab.wirecard-cloud.com/
+
+[color "branch"]
+	remote = cyan
+[color "status"]
+	untracked = cyan

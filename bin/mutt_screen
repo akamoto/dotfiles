@@ -1,0 +1,15 @@
+#!/bin/bash
+# Nick Anderson
+# http://www.cmdln.org
+# mutt wrapper
+# Check for previous mutt session and attach, if not found launch a new one
+
+if [ ! -z $DISPLAY ];then CMD="my-urxvt -name smutt -g 120x50 -e";fi
+
+previousSession=$(screen -list | awk '/\.mutt/ {print $1}')
+if [ "$previousSession" == "" ]; then
+    $CMD screen -S mutt -c ~/.mutt/conf/mutt_screen
+else
+  $CMD screen -dr $previousSession
+fi
+

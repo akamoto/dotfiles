@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$1" == on ]
+then
+    sudo pmset -b sleep 0; sudo pmset -b disablesleep 1
+elif [ "$1" == off ]
+then
+   sudo pmset -b sleep 5; sudo pmset -b disablesleep 0
+else
+    echo "Unkown argument (on/off), got: $1"
+fi
