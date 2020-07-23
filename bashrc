@@ -159,7 +159,6 @@ ncal(){
 }
 
 #s(){
-#    #set -x
 #    while [ -n "$1" ]
 #    do
 #        host="$1"
@@ -188,12 +187,15 @@ export_agent(){
     while read line; do ssh_agent+="export $line\n"; done < <(env | grep -E 'SSH_(AGENT|AUTH)' )
     if [ -n "$ssh_agent" ]
     then
-        echo -e "$ssh_agent" > ~/.moto_ssh_agent
+        echo -e "$ssh_agent" > ~/.ssh_agent
     fi
 }
 
 import_agent(){
-    . ~/.moto_ssh_agent
+    if [ -r ~/.moto ]
+    then
+        . ~/.ssh_agent
+    fi
 }
 
 if [ -z $SSH_AGENT_PID ]
