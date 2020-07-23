@@ -55,3 +55,6 @@
 [submodule "vim/pack/moto/start/vim-repeat"]
 	path = vim/pack/moto/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
+[submodule "vim/pack/moto/opt/vim-go"]
+	path = vim/pack/moto/opt/vim-go
+	url = https://github.com/fatih/vim-go
