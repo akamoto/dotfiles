@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -17,9 +17,9 @@ declare -A files_mac=(
 
 
 backupdir=/tmp/backup_dotfile_replace/
-if [ ! -d $backdupdir ]
+if [ ! -d $backupdir ]
 then
-    mkdir -v $backupdir
+    mkdir $backupdir
 fi
 
 
@@ -27,7 +27,7 @@ fi
 for file in ${!files[@]}
 do
     # don't want to fidget with "stat" differences in mac (freebsd) and linux
-    current="$(ls -l $HOME/$file 2>/dev/null | awk '{ print $NF }')"
+    current="$(ls -ld $HOME/$file 2>/dev/null | awk '{ print $NF }')"
     target=${files[$file]}
     if [[ "$current" != "$target" ]]
     then
@@ -48,7 +48,7 @@ then
     for file in ${!files_mac[@]}
     do
         # don't want to fidget with "stat" differences in mac (freebsd) and linux
-        current="$(ls -l $HOME/$file 2>/dev/null | awk '{ print $NF }')"
+        current="$(ls -ld $HOME/$file 2>/dev/null | awk '{ print $NF }')"
         target=${files_mac[$file]}
         if [[ "$current" != "$target" ]]
         then
@@ -63,3 +63,5 @@ then
         fi
     done
 fi
+
+git submodule update --init --recursive
