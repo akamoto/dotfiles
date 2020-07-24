@@ -1,0 +1,2 @@
+# Don't ring bell on completion
+set bell-style none

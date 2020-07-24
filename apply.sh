@@ -9,6 +9,8 @@ declare -A files=(
   [.gitconfig]=$dotdir/gitconfig
   [.bashrc]=$dotdir/bashrc
   [.bin]=$dotdir/bin
+  [.inputrc]=$dotdir/inputrc
+  [.hgrc]=$dotdir/hgrc
 )
 
 declare -A files_mac=(
