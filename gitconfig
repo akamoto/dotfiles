@@ -8,7 +8,7 @@
 [core]
 	trustctime = false
 	editor = vim
-	filemode = false
+	#filemode = false # in case the file flags are all over (e.g. where modified on windows before)
 
 [alias]
     s = status
