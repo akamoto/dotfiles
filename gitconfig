@@ -43,3 +43,6 @@
 	remote = cyan
 [color "status"]
 	untracked = cyan
+
+[include]
+path = ~/.gitconfig.local
