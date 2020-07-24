@@ -1,7 +1,5 @@
 # brew installed binaries overwriting mac installs
-## universal ctags
 export PATH="/usr/local/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/universal-ctags/bin:$PATH"
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications"
 # rust
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -11,7 +9,6 @@ export PATH="$PATH:$HOME/.cargo/bin"
 . $HOME/pyvenv/default-3.7/bin/activate
 # enable bash completion for repos
 eval "$(_REPOS_COMPLETE=source repos)"
-
 
 if ! [[ -n "$(ps -ef | grep "$SSH_AGENT_PID[ ]")" ]]
 then

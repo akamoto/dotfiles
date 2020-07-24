@@ -4,13 +4,6 @@ case $- in
       *) return;;
 esac
 
-if [ "$(uname)" == Darwin ]; then
-    source ~/.dotfiles/bashrc_mac
-else
-    source ~/.dotfiles/bashrc_linux
-fi
-
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -208,3 +201,9 @@ gdoc(){
     go doc $* | less
 }
 
+# load system specific
+if [ "$(uname)" == Darwin ]; then
+    source ~/.dotfiles/bashrc_mac
+else
+    source ~/.dotfiles/bashrc_linux
+fi
