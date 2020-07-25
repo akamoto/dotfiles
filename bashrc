@@ -182,7 +182,7 @@ export_agent(){
 }
 
 import_agent(){
-    if [ -r ~/.moto ]
+    if [ -r ~/.ssh_agent ]
     then
         . ~/.ssh_agent
     fi
@@ -191,6 +191,14 @@ import_agent(){
 if [ -z $SSH_AGENT_PID ]
 then
     import_agent
+fi
+
+if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null
+then
+    echo "import ssh-agent not found, starting new agent process.."
+    eval $(ssh-agent)
+    ssh-add ~/.ssh/id_rsa
+    export_agent
 fi
 
 mdless(){

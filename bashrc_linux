@@ -2,12 +2,3 @@
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 eval "$(lesspipe)"
 
-if ! [[ -d /proc/$SSH_AGENT_PID ]]
-then
-    echo "import ssh-agent not found, starting new agent process.."
-    eval $(ssh-agent)
-    ssh-add ~/.ssh/id_rsa
-    ssh-add ~/.ssh/aka64
-    export_agent
-fi
-#####
