@@ -34,8 +34,8 @@
 [submodule "vim/pack/moto/start/vim-repeat"]
 	path = vim/pack/moto/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat
-[submodule "vim/pack/moto/opt/vim-terraform"]
-	path = vim/pack/moto/opt/vim-terraform
+[submodule "vim/pack/moto/start/vim-terraform"]
+	path = vim/pack/moto/start/vim-terraform
 	url = https://github.com/hashivim/vim-terraform.git
 [submodule "vim/pack/moto/opt/vim-go"]
 	path = vim/pack/moto/opt/vim-go
@@ -61,6 +61,3 @@
 [submodule "tmux/plugins/vim-tmux-navigator"]
 	path = tmux/plugins/vim-tmux-navigator
 	url = https://git::@github.com/christoomey/vim-tmux-navigator
-[submodule "vim/pack/moto/start/vim-terraform"]
-	path = vim/pack/moto/start/vim-terraform
-	url = https://github.com/hashivim/vim-terraform.git
