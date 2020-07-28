@@ -106,11 +106,12 @@ if v:version >= 703
 "    set relativenumber
     set undofile
     set colorcolumn=80,+0
-    set cryptmethod=blowfish
+    "set cryptmethod=blowfish " use default (blowfish2 as of vim 8)
     if &t_Co > 255
         hi ColorColumn ctermbg=237
     endif
 endif
+
 
 "map <F5> <ESC> call findindent#do()<CR>
 
