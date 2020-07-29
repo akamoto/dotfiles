@@ -70,11 +70,15 @@ green="\[\033[0;32m\]"
 cyan="\[\033[0;36m\]"
 red="\[\033[0;31m\]"
 purple="\[\033[0;35m\]"
-brown="\[\033[0;33m\]"
-yellow="\[\033[1;33m\]"
+yellow="\[\033[0;33m\]"
+boldyellow="\[\033[1;33m\]"
 no_color="\[\033[0m\]"
-color=$brown  #color=$cyan
-#export PS1="\A \$? $color\u$no_color@\h: [\W] $color\\$ $no_color"
+
+case "$HOSTNAME" in
+    aka64) color=$green;;
+    akayo) color=$boldyellow;;
+    *) color=$purple;;
+esac
 
 bash_prompt() {
   gitrepo="$(git rev-parse --show-toplevel 2>/dev/null)"
