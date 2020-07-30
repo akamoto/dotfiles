@@ -1,0 +1,54 @@
+#!/bin/bash
+
+
+usage(){
+    echo -e "\n$0 <hostsfile> [force]"
+    echo -e "\n\nforce updates key even if already found in known_hosts\n"
+    exit 1
+}
+
+if [ "$1" == '-h' ]
+then
+    usage
+fi
+
+if [ -z "$1" ]
+then
+    echo "supply hostfile as argument"
+    usage
+fi
+
+set -x
+TMPFILE1=/tmp/$RANDOM
+TMPFILE2=/tmp/$RANDOM
+
+# create clean list
+for host in $(awk -F, '{print $1}' ~/.ssh/known_hosts)
+do
+    if ! [[ "$host" =~ ^(AAAA|ssh-rsa) ]]
+    then
+        echo $host >> $TMPFILE1
+    fi
+done
+
+for i in `grep -v '^\[' $1` ; do
+    if [ "$2" == 'force' ]
+    then
+        echo $i >> $TMPFILE1
+    else
+        if ! grep -q $i $TMPFILE1
+        then
+            ssh-keyscan $i >> ~/.ssh/known_hosts
+        fi
+    fi
+done
+
+if [ "$2" == 'force' ]
+then
+    sort -u $TMPFILE1 > $TMPFILE2
+    rm ~/.ssh/known_hosts
+    for host in $(cat $TMPFILE2)
+    do
+        ssh-keyscan $host >> ~/.ssh/known_hosts
+    done
+fi

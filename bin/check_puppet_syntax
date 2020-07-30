@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then echo "provide a path to check"; fi
+
+function check_manifest
+{
+    file="$1"
+    echo "### $file: ###"
+    puppet parser validate $file \
+    && puppet-lint $file
+}
+
+function check_template
+{
+    file="$1"
+    echo "### $file: ###"
+    erb -xv -T '-' $file | ruby -c
+}
+
+for path in $*
+do
+    if [[ -d $path ]]
+    then
+        manifest_list=`find $path -name '*.pp'`
+        template_list=`find $path -name '*.erb'`
+        if [[ $manifest_list == '' && $template_list == '' ]]
+        then
+            echo "Warning: no puppet files in '$path'!" >&2
+        fi
+        for file in $manifest_list
+        do
+            check_manifest $file
+        done
+        for file in $template_list
+        do
+            check_template $file
+        done
+    elif [[ -f $path && $path == *.pp ]]
+    then
+        check_manifest $path
+    elif [[ -f $path && $path == *.erb ]]
+    then
+        check_template $path
+    else
+        echo "Warning: Don't know what to do with '$path'!" >&2
+    fi
+done
+
