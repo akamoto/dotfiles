@@ -2,6 +2,8 @@
 -- reload config
 hs.hotkey.bind({"ctrl", "alt", "shift" }, "r", function() hs.reload() end)
 hs.alert.show("Config loaded")
+-- disable hide app cmd+h
+hs.hotkey.bind({"cmd"}, "h", function() hs.alert.show("there is no hiding") end)
 
 -- a global variable for the Hyper Mode / bind capslock to esc/hyper
 k = hs.hotkey.modal.new({}, "F17")
