@@ -10,3 +10,4 @@ export PATH="$PATH:$HOME/.cargo/bin"
 # enable bash completion for repos
 eval "$(_REPOS_COMPLETE=source repos)"
 
+export BASH_SILENCE_DEPRECATION_WARNING=1
