@@ -164,10 +164,10 @@ set backupskip=/tmp/*,/private/tmp/*"
 au VimResized * exe "normal! \<c-w>="
 
 
-set undodir=~/.vim/tmp/undo//     " undo files
-set backupdir=~/.vim/tmp/backup// " backups
-set directory=~/.vim/tmp/swap//   " swap files
-set backup                        " enable backups
+set undodir=~/.vim/tmp/undo/     " undo files
+set backupdir=~/.vim/tmp/backup/ " backups
+set directory=~/.vim/tmp/swap/   " swap files
+set backup                       " enable backups
 
 " EasyMotion
 let g:EasyMotion_do_mapping = 0
