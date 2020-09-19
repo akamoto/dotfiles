@@ -1,5 +1,5 @@
-set runtimepath=~/.dotfiles/vim,/var/lib/vim/addons,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/var/lib/vim/addons/after,~/.dotfiles/vim/after
-set packpath=~/.dotfiles/vim,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim81,/usr/share/vim/vimfiles/after,/etc/vim/after,~/.dotfiles/vim/after
+let &runtimepath = printf('%s,%s,%s', "~/.dotfiles/vim", &runtimepath, "~/.dotfiles/vim/after")
+let &packpath = printf('%s,%s,%s', "~/.dotfiles/vim", &packpath, "~/.dotfiles/vim/after")
 
 set t_Co=256
 
