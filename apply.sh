@@ -13,6 +13,10 @@ declare -A files=(
   [.hgrc]=$dotdir/hgrc
 )
 
+declare -A dirfiles=(
+  [.w3m/config]=$dotdir/w3m/config
+)
+
 declare -A files_mac=(
   [.hammerspoon]=$dotdir/hammerspoon
 )
@@ -39,6 +43,30 @@ do
             mv -v "$current" "$backupdir/$file-$(date +%Y-%m-%d_%H:%M:%S)"
         else
             echo "$file does not yet exist, creating link to "$target""
+        fi
+        ln -sf "$target" "$HOME/$file"
+    fi
+done
+
+set -x
+for file in ${!dirfiles[@]}
+do
+    # don't want to fidget with "stat" differences in mac (freebsd) and linux
+    current="$(ls -ld $HOME/$file 2>/dev/null | awk '{ print $NF }')"
+    target=${dirfiles[$file]}
+    if [[ "$current" != "$target" ]]
+    then
+        if [ -e "$current" ]
+        then
+            echo "replacing ungoverned "$current" with link to "$target""
+            mkdir -p $backupdir/${file%/*}
+            mv -v "$current" "$backupdir/$file-$(date +%Y-%m-%d_%H:%M:%S)"
+        else
+            echo "$file does not yet exist, creating link to "$target""
+        fi
+        if [ ! -d $HOME/${file%/*} ]
+        then
+            mkdir -p $HOME/${file%/*}
         fi
         ln -sf "$target" "$HOME/$file"
     fi
