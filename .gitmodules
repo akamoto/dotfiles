@@ -58,3 +58,6 @@
 [submodule "tmux/plugins/vim-tmux-navigator"]
 	path = tmux/plugins/vim-tmux-navigator
 	url = https://git::@github.com/christoomey/vim-tmux-navigator
+[submodule "vim/pack/moto/opt/vim-colors-solarized"]
+	path = vim/pack/moto/opt/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
