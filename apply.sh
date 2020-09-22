@@ -48,7 +48,7 @@ do
     fi
 done
 
-set -x
+#set -x
 for file in ${!dirfiles[@]}
 do
     # don't want to fidget with "stat" differences in mac (freebsd) and linux
@@ -98,3 +98,5 @@ git submodule update --init --recursive
 
 # create vim backup/swap/tmp folder
 mkdir -p ~/.vim/tmp/{backup,swap,undo}
+# update helptags / documentation in case a new plugin was added
+vim --cmd ":helptags ALL" --cmd :q
