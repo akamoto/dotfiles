@@ -1,6 +1,3 @@
-[submodule "vim/pack/moto/start/vim-colors-solarized"]
-	path = vim/pack/moto/start/vim-colors-solarized
-	url = https://github.com/micha/vim-colors-solarized
 [submodule "vim/pack/moto/start/fugitive"]
 	path = vim/pack/moto/start/fugitive
 	url = https://github.com/tpope/vim-fugitive
