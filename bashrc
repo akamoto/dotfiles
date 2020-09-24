@@ -198,7 +198,8 @@ then
     import_agent
 fi
 
-if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null then
+if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null
+then
     # try importing agent settings first, in case the parent session has
     # a broken agent but we already started and executed a new ssh-agent
     import_agent
