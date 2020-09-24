@@ -183,6 +183,7 @@ export_agent(){
     then
         echo -e "$ssh_agent" > ~/.ssh_agent
     fi
+    unset ssh_agent
 }
 
 import_agent(){
