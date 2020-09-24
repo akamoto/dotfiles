@@ -1,0 +1,5 @@
+Session.vim
+
+# not entirely sure this is a good idea. Mean to exclude the
+# youcompleteme/third_part/ycmd/third_partle/rls build folder
+third_party/rls
