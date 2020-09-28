@@ -1,11 +1,17 @@
 #!/bin/bash
 
-font="xft:ProggyCleanTTSZ,xft:Bitstream Vera Sans Mono:pixelsize=10.5"
-#font="xft:ProggyVector:pixelsize=11,xft:ProggyCleanTTSZ,xft:Bitstream Vera Sans Mono:pixelsize=10.5"
-#font="xft:Bitstream Vera Sans Mono:pixelsize=10.5"
+#font="xft:ProggyCleanTTSZ,xft:Bitstream Vera Sans Mono:pixelsize=10.5"
+
 if [[ ${0##*/} == my-urxvt ]]
 then
-  :
+  # 2020 - 4k laptop
+  #font="xft:Roboto Mono:pixelsize=29"
+  font="xft:Roboto Mono:pixelsize=30"
+  #font="xft:Roboto Mono Medium:pixelsize=30"
+elif [[ ${0##*/} == my-urxvt-ext ]]
+then
+  # 2020 - font for external HD monitor
+  font="xft:ProggyCleanTTSZ"
 elif [[ ${0##*/} == my-urxvt-small ]]
 then
   font="xft:Bitstream Vera Sans Mono:pixelsize=10"
@@ -14,27 +20,43 @@ then
   font="xft:Bitstream Vera Sans Mono:pixelsize=12.5"
 fi
 
-#font="xft:Bitstream Vera Sans Mono:pixelsize=15"
-
 #ugly white = PeachPuff NavajoWhite LemonChiffon BlanchedAlmond Wheat
 #white = WhiteSmoke
 #no contrast = Tan IndianRed
 # doesn't work w tint=darkslategray -> CadetBlue SeaGreen MediumAquaMarine
 # pink: Orchid
 
-low_contrast=( DodgerBlue MediumSeaGreen RosyBrown DarkSalmon DarkSeaGreen SandyBrown LightBlue LightSeaGreen LightSkyBlue DarkGoldenRod Peru Pink DarkKhaki )
+#low_contrast=(
+#  DodgerBlue MediumSeaGreen RosyBrown DarkSalmon DarkSeaGreen SandyBrown
+#  LightBlue LightSeaGreen LightSkyBlue DarkGoldenRod Peru Pink DarkKhaki
+#)
+#[ -z $foreground ] && random=$(( $RANDOM % ${#low_contrast[@]} ))
+#export foreground=${low_contrast[$random]}
 
-[ -z $foreground ] && random=$(( $RANDOM % ${#low_contrast[@]} ))
-export foreground=${low_contrast[$random]}
-export foreground="#dcdcdc"
-export foreground="#c0c0c0"
+#export foreground="#dcdcdc"
+#export foreground="#c0c0c0"
+# 2020
+export foreground="#31D8EF"
 
-tint=DarkSlateGray #DarkKhaki #grey#MediumSeaGreen
+#tint=DarkSlateGray #DarkKhaki #grey#MediumSeaGreen
 
-transparency=" -tr -tint $tint -fade 60 -fadecolor DarkGoldenRod -sh 50"
+# 2020
+#tint="#021014"
+#transparency="-tr -tint $tint -fade 60 -fadecolor DarkGoldenRod -sh 100"
+
+#tint=DarkSlateGray # sh 50 is fine
+#transparency="-tr -tint $tint -fade 60 -fadecolor DarkGoldenRod -sh 50"
+# 2020 - lets try sea green, though i feel slate gray might still be the one
+# moto - 20200925
+tint=MediumSeaGreen # sh 30 and below
+transparency="-tr -tint $tint -fade 20 -fadecolor DarkGoldenRod -sh 30"
 #transparency=" -tint $tint -fade 5 -fadecolor grey "
-background="black"
+#background="black"
+# 2020
+background="#021014"
 
-urxvt -geometry 80x24  -cr grey +sb -is -sbg -j -sl 2000 +si \
+#urxvt -geometry 80x24  -cr grey +sb -is -sbg -j -sl 2000 +si \
+# 2020
+urxvt -geometry 80x24  -cr MediumSeaGreen +sb -is -sbg -j -sl 2000 +si \
   -fg $foreground -bg $background -fn "$font" $transparency \
   $* &
