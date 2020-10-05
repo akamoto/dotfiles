@@ -2,3 +2,9 @@
 #[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 eval "$(lesspipe)"
 
+
+# iterm2 exports colorterm itself
+if [ $TERM == "st-256color" ]
+then
+    export COLORTERM=truecolor
+fi

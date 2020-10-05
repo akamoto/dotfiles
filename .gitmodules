@@ -64,3 +64,6 @@
 [submodule "vim/pack/moto/start/gruvbox"]
 	path = vim/pack/moto/start/gruvbox
 	url = https://github.com/morhetz/gruvbox
+[submodule "vim/pack/moto/start/vim-gruvbox8"]
+	path = vim/pack/moto/start/vim-gruvbox8
+	url = https://github.com/lifepillar/vim-gruvbox8
