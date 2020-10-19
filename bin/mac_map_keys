@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# for the list of key-codes see
+# https://developer.apple.com/library/archive/technotes/tn2450/_index.html
+
 # hidutil property --set '{"UserKeyMapping":[{"HIDKeyboardModifierMappingSrc":0x700000035,"HIDKeyboardModifierMappingDst":0x700000064},{"HIDKeyboardModifierMappingSrc":0x700000064,"HIDKeyboardModifierMappingDst":0x700000035}]}'
 
 # swap tilde/paragraph on internal keyboard int/magic
@@ -7,14 +10,13 @@
 #    "HIDKeyboardModifierMappingDst":0x700000064},
 #    "HIDKeyboardModifierMappingSrc":0x700000064,
 #    "HIDKeyboardModifierMappingDst":0x700000035}
-# map tilde magic keyboard (is missing a key as well)
-#    "HIDKeyboardModifierMappingSrc":0x700000076,
-#    "HIDKeyboardModifierMappingDst":0x700000050}
 # map capslock to f18 for hammerspoon esc/hyper int/magic
 #    "HIDKeyboardModifierMappingSrc":0x700000039,
 #    "HIDKeyboardModifierMappingDst":0x70000006d},
-#hidutil property --matching '{"ProductID": 0x27b}' --set '{"UserKeyMapping":[
-hidutil property --set '{"UserKeyMapping":[
+
+# swap paragraph and tilde on internal keyboard
+# map capslock to F18 on internal keyboard
+hidutil property --matching '{"ProductID": 0x27b}' --set '{"UserKeyMapping":[
 { "HIDKeyboardModifierMappingSrc":0x700000035,
   "HIDKeyboardModifierMappingDst":0x700000064},
 { "HIDKeyboardModifierMappingSrc":0x700000064,
@@ -24,11 +26,16 @@ hidutil property --set '{"UserKeyMapping":[
     "HIDKeyboardModifierMappingDst":0x70000006d}
 ]}'
 
+############################
 # swap map paragraph to tilde on magic keyboard
+############################
 hidutil property --matching '{"ProductID":0x26c}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x700000076,
     "HIDKeyboardModifierMappingDst":0x700000050},
+{
+    "HIDKeyboardModifierMappingSrc":0x700000039,
+    "HIDKeyboardModifierMappingDst":0x70000006d}
 {
     "HIDKeyboardModifierMappingSrc":0x700000039,
     "HIDKeyboardModifierMappingDst":0x70000006d}
@@ -42,6 +49,9 @@ hidutil property --matching '{"ProductID":0x24}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x7000000e3,
     "HIDKeyboardModifierMappingDst":0x7000000e2}
+{
+    "HIDKeyboardModifierMappingSrc":0x700000039,
+    "HIDKeyboardModifierMappingDst":0x70000006d}
 ]}'
 
 # cherry keyboard home
@@ -52,7 +62,29 @@ hidutil property --matching '{"ProductID":0x11}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x7000000e3,
     "HIDKeyboardModifierMappingDst":0x7000000e2}
+{
+    "HIDKeyboardModifierMappingSrc":0x700000039,
+    "HIDKeyboardModifierMappingDst":0x70000006d}
 ]}'
+
+# use karabiner-elements for now - doesnt seem to work...
+# durgod keyboard home
+# `/~ is correctly detected since the keyboard is ANSI US layout
+# swap left command with left option as according to the keycodes
+# swap left option with left command as according to the keycodes
+# map capslock to F18
+hidutil property --matching '{"ProductID":0x82}' --set '{"UserKeyMapping":[
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e3,
+    "HIDKeyboardModifierMappingDst":0x7001000e2},
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e2,
+    "HIDKeyboardModifierMappingDst":0x7000000e3},
+{
+    "HIDKeyboardModifierMappingSrc":0x700000039,
+    "HIDKeyboardModifierMappingDst":0x70000006d}
+]}'
+
 # magic keyboard as according to hammerspoon
 #-- show keyevents
 #-- hs.eventtap.new({hs.eventtap.event.types.keyUp},function(e)print(hs.inspect(e:getRawEventData()))end):start()

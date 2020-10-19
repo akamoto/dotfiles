@@ -202,19 +202,7 @@ then
     import_agent
 fi
 
-if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null || ! grep -q 'ssh-agent' /proc/$SSH_AGENT_PID/cmdline 2>/dev/null
-then
-    # try importing agent settings first, in case the parent session has
-    # a broken agent but we already started and executed a new ssh-agent
-    import_agent
-    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null || ! grep -q 'ssh-agent' /proc/$SSH_AGENT_PID/cmdline 2>/dev/null
-    then
-        echo "no running ssh-agent found, starting new agent process.."
-        eval $(ssh-agent)
-        ssh-add ~/.ssh/id_rsa
-        export_agent
-    fi
-fi
+# see bashrc_linux / bashrc_mac for the actual checking of the running agent
 
 gdoc(){
     go doc $* | less
