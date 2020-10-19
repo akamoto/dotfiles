@@ -45,7 +45,7 @@ then
     tmux select-pane -t 0
     tmux send-keys "if ! [[ "$HOSTNAME" =~ "$host" ]]; then ssh $host; fi" C-m
     tmux send-keys "screen -rd ${target_screen}1 || screen -S ${target_screen}1" C-m
-    tmux select-pane -t 1 || ( tmux split-window -v )
+    tmux select-pane -t 1 || ( tmux split-window -h )
     tmux send-keys "if ! [[ "$HOSTNAME" =~ "$host" ]]; then ssh $host; fi" C-m
     tmux send-keys "screen -rd ${target_screen}2 || screen -S ${target_screen}2" C-m
 fi
