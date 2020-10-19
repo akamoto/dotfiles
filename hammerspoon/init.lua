@@ -1,6 +1,6 @@
 -- put at beginning so this hotkey always works
 -- reload config
-hs.hotkey.bind({"ctrl", "alt", "shift" }, "r", function() hs.reload() end)
+hs.hotkey.bind({"alt", "shift" }, "r", function() hs.reload() end)
 hs.alert.show("Config loaded")
 -- disable hide app cmd+h
 hs.hotkey.bind({"cmd"}, "h", function() hs.alert.show("there is no hiding") end)
@@ -132,6 +132,8 @@ function MoveWindowToSpace(sp)
     local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
     spaces.moveWindowToSpace(win:id(), spaceID) -- move window to new space
     --spaces.changeToSpace(spaceID)              -- follow window to new space
+    -- hs.alert.show("move win to " .. sp .. ":" .. spaceID .. "on: " .. uuid)
+
 end
 
 function MoveToSpace(sp)
@@ -139,6 +141,7 @@ function MoveToSpace(sp)
     local uuid = win:screen():spacesUUID()     -- uuid for current screen
     local spaceID = spaces.layout()[uuid][sp]  -- internal index for sp
     spaces.changeToSpace(spaceID)              -- switch to space
+    -- hs.alert.show("move focus to " .. sp .. ":" .. spaceID .. "on: " .. uuid)
 end
 
 -- Launch new iTerm window on current desktop
@@ -203,14 +206,14 @@ hs.hotkey.bind({"ctrl", "alt"}, "e", function() MoveWindowToSpace(6) end)
 hs.hotkey.bind({"ctrl", "alt"}, "r", function() MoveWindowToSpace(7) end)
 hs.hotkey.bind({"ctrl", "alt"}, "t", function() MoveWindowToSpace(8) end)
 
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "s", function() MoveToSpace(1) end)
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "d", function() MoveToSpace(2) end)
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "f", function() MoveToSpace(3) end)
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "g", function() MoveToSpace(4) end)
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "w", function() MoveToSpace(5) end)
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "e", function() MoveToSpace(6) end)
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "r", function() MoveToSpace(7) end)
-hs.hotkey.bind({"ctrl", "alt", "cmd"}, "t", function() MoveToSpace(8) end)
+hs.hotkey.bind({"alt"}, "s", function() MoveToSpace(1) end)
+hs.hotkey.bind({"alt"}, "d", function() MoveToSpace(2) end)
+hs.hotkey.bind({"alt"}, "f", function() MoveToSpace(3) end)
+hs.hotkey.bind({"alt"}, "g", function() MoveToSpace(4) end)
+hs.hotkey.bind({"alt"}, "w", function() MoveToSpace(5) end)
+hs.hotkey.bind({"alt"}, "e", function() MoveToSpace(6) end)
+hs.hotkey.bind({"alt"}, "r", function() MoveToSpace(7) end)
+hs.hotkey.bind({"alt"}, "t", function() MoveToSpace(8) end)
 
 -- other
 hs.hotkey.bind({"ctrl", "alt", "cmd"}, "m", function() hs.window.focusedWindow():maximize() end)
