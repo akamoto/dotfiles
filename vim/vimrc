@@ -39,7 +39,6 @@ set backspace=indent,eol,start
 set laststatus=2
 set secure
 
-nnoremap <Leader>z :GundoToggle<CR>
 "nnoremap / /\v
 "vnoremap / /\v
 set ignorecase
@@ -49,6 +48,14 @@ set incsearch
 set showmatch
 set hlsearch
 
+
+" increase remembered history (def: 50)
+set history=200
+
+":help mapleader - use default '\'
+"set mapleader=""
+nnoremap <Leader>z :GundoToggle<CR>
+" unset hilightsearch
 nnoremap <leader><space> :noh<cr>
 
 " TODO: interferes with jumplist navigation
