@@ -11,3 +11,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 eval "$(_REPOS_COMPLETE=source repos)"
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
+
+mdless(){
+    mdcat $1 | less -r
+}

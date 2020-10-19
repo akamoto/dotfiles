@@ -111,12 +111,16 @@ bash_prompt
 
 # aliases
 alias s=ssh
+alias st='ssh -t moto t'
+alias motot='s -t moto t'
+
 alias vi=vim
 alias ls="ls -FC"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias w3m="w3m -v"
+# this breaks after suspend / resume (I think)
 alias tmesg='dmesg|perl -ne "BEGIN{\$a= time()- qx!cat /proc/uptime!};s/\[\s*(\d+)\.\d+\]/localtime(\$1 + \$a)/e; print \$_;"'
 alias gitcd='cd "$(git rev-parse --show-toplevel)"'
 alias svncd='cd "$(svn info | awk -F: "/Working Copy Root Path:/ { print \$2 }" | sed "s/^ //" )"'
@@ -131,8 +135,6 @@ alias tw="timew"
 alias ts='tmux_ssh_sess'
 alias validate_json='python -mjson.tool <'
 alias irc='ssh -t moto ssh -t moto@server screen -rd irc'
-alias st='ssh -t moto t'
-alias motot='s -t moto t'
 alias autossh='AUTOSSH_POLL=15 autossh -M20001 -t p-shsaaa-mgt01 t'
 
 # functions
@@ -152,6 +154,8 @@ ncal(){
     fi
 }
 
+# this was the screen based "open new tab when ssh"
+# now using tmux instead
 #s(){
 #    while [ -n "$1" ]
 #    do
@@ -198,23 +202,19 @@ then
     import_agent
 fi
 
-if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null
+if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null || ! grep -q 'ssh-agent' /proc/$SSH_AGENT_PID/cmdline 2>/dev/null
 then
     # try importing agent settings first, in case the parent session has
     # a broken agent but we already started and executed a new ssh-agent
     import_agent
-    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null
+    if ! kill -0 "$SSH_AGENT_PID" 2>/dev/null || ! grep -q 'ssh-agent' /proc/$SSH_AGENT_PID/cmdline 2>/dev/null
     then
-        echo "import ssh-agent not found, starting new agent process.."
+        echo "no running ssh-agent found, starting new agent process.."
         eval $(ssh-agent)
         ssh-add ~/.ssh/id_rsa
         export_agent
     fi
 fi
-
-mdless(){
-    mdcat $1 | less -r
-}
 
 gdoc(){
     go doc $* | less
