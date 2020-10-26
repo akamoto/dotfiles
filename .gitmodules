@@ -31,3 +31,15 @@
 [submodule "vim/pack/base/start/vim-tmux-navigator"]
 	path = vim/pack/base/start/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
+[submodule "vim/pack/colors/opt/palenight.vim"]
+	path = vim/pack/colors/opt/palenight.vim
+	url = https://github.com/drewtempelmeyer/palenight.vim
+[submodule "vim/pack/colors/opt/vim-airline-themes"]
+	path = vim/pack/colors/opt/vim-airline-themes
+	url = https://github.com/vim-airline/vim-airline-themes
+[submodule "vim/pack/colors/opt/vim-deep-space"]
+	path = vim/pack/colors/opt/vim-deep-space
+	url = https://github.com/tyrannicaltoucan/vim-deep-space
+[submodule "vim/pack/colors/start/vim-gruvbox8"]
+	path = vim/pack/colors/start/vim-gruvbox8
+	url = https://github.com/lifepillar/vim-gruvbox8
