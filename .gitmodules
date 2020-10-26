@@ -43,3 +43,9 @@
 [submodule "vim/pack/colors/start/vim-gruvbox8"]
 	path = vim/pack/colors/start/vim-gruvbox8
 	url = https://github.com/lifepillar/vim-gruvbox8
+[submodule "vim/pack/syntax/opt/vim-go"]
+	path = vim/pack/syntax/opt/vim-go
+	url = https://github.com/fatih/vim-go
+[submodule "vim/pack/syntax/start/youcompleteme"]
+	path = vim/pack/syntax/start/youcompleteme
+	url = https://github.com/valloric/youcompleteme
