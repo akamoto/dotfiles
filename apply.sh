@@ -94,7 +94,7 @@ then
     done
 fi
 
-git submodule update --init --recursive
+git submodule update --init --recursive --depth 1
 
 # create vim backup/swap/tmp folder
 mkdir -p ~/.vim/tmp/{backup,swap,undo}
