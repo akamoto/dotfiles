@@ -23,6 +23,7 @@ set smarttab
 set expandtab
 
 set encoding=utf-8
+" how many lines to always keep in view below/above cursor
 set scrolloff=3
 set autoindent
 set showmode
@@ -32,7 +33,7 @@ set wildmenu
 set wildmode=list:longest
 "set belloff all # somehow ends up printing some settings when I open vim.
 "set visualbell
-"set cursorline
+set cursorline
 set ttyfast
 set ruler
 set backspace=indent,eol,start
@@ -57,6 +58,7 @@ set history=200
 nnoremap <Leader>z :GundoToggle<CR>
 " unset hilightsearch
 nnoremap <leader><space> :noh<cr>
+nnoremap <leader>c :set cursorline! cursorcolumn!<cr>
 
 " TODO: interferes with jumplist navigation
 "nnoremap <tab> %  " jumps to next enclosure
