@@ -1,13 +1,5 @@
 #!/bin/bash
 
-#set -x
-
-## if we are inside tmux dettach first
-#if [ -n "$TMUX" ]
-#then
-#    tmux detach
-#fi
-
 if [ -n "$1" ]
 then
     host=$1
@@ -16,37 +8,54 @@ else
     echo "host argument ('$1') is empty"
     echo "using last argument"
     host="$(cat ~/.ts_sess)"
-    #exit 2
 fi
 
+# Once we connect to the target host, we open or reattach to two screen sessions
+# on that host. The session names default to 's1' and 's2'
 if [ -n "$2" ]
 then
     target_screen="$2"
 else
-    target_screen='s'
+    target_screen="s"
 fi
 
+# With some version tmux started disallowing periods (additionally to colons) in
+# session names, since those are reserved to address a window pane within
+# a session, e.g. a target-pane 'mysession:window2.3'
+host_escaped="$(echo $host | sed 's/\./<dot>/g')"
 
-# create a new detached session if it does not exist.
-if ! tmux has-session -t=$host
+# create or attach to the desired session and fire up ssh and screen
+
+# Unfortunatly we have to send the commands inside the target session (maybe
+# there is a way around that, dunno).
+# This means if we are not already in the session, we have to run the script
+# twice: 1) create session 2) start ssh+screen
+# This is why we read the hostname from ~/.ts_sess if no argument is supplied.
+# You can run '$0 <hostname' which will switch you to the new session, and then
+# just '$0' to open the screens. I have this script aliased to 'ts'.
+if ! tmux has-session -t="$host_escaped"
 then
-    tmux_temp="$TMUX"
+    # tmux new-session aborts when run inside a tmux session.
+    # Unsetting $TMUX to force.
     unset TMUX
-    tmux new-session -d -s $host
-    export TMUX=$tmux_temp
-    tmux switch-client -t $host
-    exit
-elif ! ( tmux ls | grep -q -E "$host.*attached" )
-then
-    tmux switch-client -t $host
-elif tmux ls | grep -q -E "$host.*attached"
-then
-    tmux rename-window $target_screen
-    tmux select-pane -t 0
-    tmux send-keys "if ! [[ "$HOSTNAME" =~ "$host" ]]; then ssh $host; fi" C-m
-    tmux send-keys "screen -rd ${target_screen}1 || screen -S ${target_screen}1" C-m
-    tmux select-pane -t 1 || ( tmux split-window -h )
-    tmux send-keys "if ! [[ "$HOSTNAME" =~ "$host" ]]; then ssh $host; fi" C-m
-    tmux send-keys "screen -rd ${target_screen}2 || screen -S ${target_screen}2" C-m
+    # Start a detached new session. If it is not detached, this will (force)
+    # start a new session /in/ the currently focused pane.
+    tmux new-session -d -s "$host_escaped"
 fi
 
+# tmux var '#S' holds the name of the current session
+if [[ $(tmux display-message -p "#S") != "$host_escaped" ]]
+then
+    # Switch to the target session
+    tmux switch-client -t "$host_escaped"
+else
+    # The following is unaware whether the ssh to the host worked. if it does
+    # not, you get two local screen.
+    tmux rename-window "$target_screen"
+    tmux select-pane -t 0
+    tmux send-keys "if ! [[ "$HOSTNAME" =~ "$host" ]]; then ssh "$host"; fi" C-m
+    tmux send-keys "screen -rd "${target_screen}1" || screen -S "${target_screen}1"" C-m
+    tmux select-pane -t 1 || ( tmux split-window -h )
+    tmux send-keys "if ! [[ "$HOSTNAME" =~ "$host" ]]; then ssh "$host"; fi" C-m
+    tmux send-keys "screen -rd "${target_screen}2" || screen -S "${target_screen}2"" C-m
+fi
