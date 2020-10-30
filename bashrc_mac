@@ -6,7 +6,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 
 
 # repos
-. $HOME/pyvenv/default-3.7/bin/activate
+. $HOME/pyvenv/bin/activate
 # enable bash completion for repos
 eval "$(_REPOS_COMPLETE=source repos)"
 
