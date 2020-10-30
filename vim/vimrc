@@ -40,8 +40,6 @@ set backspace=indent,eol,start
 set laststatus=2
 set secure
 
-"nnoremap / /\v
-"vnoremap / /\v
 set ignorecase
 set smartcase
 set gdefault
@@ -49,9 +47,21 @@ set incsearch
 set showmatch
 set hlsearch
 
-
 " increase remembered history (def: 50)
 set history=200
+
+"nnoremap / /\v
+"vnoremap / /\v
+
+" set vi-keybindings in the command-line
+" Most likely to cause problems is the <C-H> remap, which by default behaves as
+" backspace. If your terminals backspace is bound to the linux standard
+" 'stty erase ^?' it should be fine.
+cnoremap <C-H> <Left>
+cnoremap <C-J> <Down>
+cnoremap <C-K> <Up>
+cnoremap <C-L> <Right>
+
 
 ":help mapleader - use default '\'
 "set mapleader=""
