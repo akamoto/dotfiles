@@ -85,6 +85,19 @@ hidutil property --matching '{"ProductID":0x82}' --set '{"UserKeyMapping":[
     "HIDKeyboardModifierMappingDst":0x70000006d}
 ]}'
 
+# tenkeyless gpc
+hidutil property --matching '{"ProductID":0x652f}' --set '{"UserKeyMapping":[
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e3,
+    "HIDKeyboardModifierMappingDst":0x7001000e2},
+{
+    "HIDKeyboardModifierMappingSrc":0x7000000e2,
+    "HIDKeyboardModifierMappingDst":0x7000000e3},
+{
+    "HIDKeyboardModifierMappingSrc":0x700000039,
+    "HIDKeyboardModifierMappingDst":0x70000006d}
+]}'
+
 # magic keyboard as according to hammerspoon
 #-- show keyevents
 #-- hs.eventtap.new({hs.eventtap.event.types.keyUp},function(e)print(hs.inspect(e:getRawEventData()))end):start()
