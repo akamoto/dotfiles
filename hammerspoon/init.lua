@@ -169,6 +169,11 @@ hs.hotkey.bind({"ctrl", "alt"}, "x", function()
     end
 end)
 
+-- reconfigure keyboard keys
+hs.hotkey.bind({"ctrl", "alt"}, "i", function()
+    hs.execute("$HOME/.bin/mac_map_keys")
+end)
+
 -- set up your windowfilter
 --switcher = hs.window.switcher.new() -- default windowfilter: only visible windows, all Spaces
 --switcher_space = hs.window.switcher.new(hs.window.filter.new():setCurrentSpace(true):setDefaultFilter{}) -- include minimized/hidden windows, current Space only
