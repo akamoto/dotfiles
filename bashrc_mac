@@ -31,4 +31,6 @@ then
     fi
 fi
 
+# aliases
 
+alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox -P"
