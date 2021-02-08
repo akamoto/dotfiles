@@ -156,6 +156,9 @@ set background=dark
 let g:gruvbox_transp_bg = 1
 colorscheme gruvbox8
 
+" TODO: or start using airline or something?
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+
 "if &t_Co > 255
 "    "let g:solarized_termcolors = 256
 "    "let g:solarized_termtrans = 1
