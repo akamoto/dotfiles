@@ -108,11 +108,7 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-"
-""taglist
-"nnoremap <silent> <F8> :TlistToggle<CR>
 
-nnoremap <leader>n :NERDTreeToggle<cr>
 
 "nnoremap <leader>jd :YcmCompleter GoTo<CR>
 
@@ -144,8 +140,12 @@ endif
 
 
 "map <F5> <ESC> call findindent#do()<CR>
+" fugitive
+nnoremap <leader>g :G<cr>
 
+nnoremap <leader>n :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.un\~$', '\~$', '^\.git$', '^.svn$', '^blib$', '^_build$', 'pm_to_blib', '\.o$', '\.class$', '\.pyc$']
+let g:NERDTreeWinSize=45
 
 let g:fuf_file_exclude = '\v\~$|\.(o|exe|dll|bak|orig|swp)$|(^|[/\\])(blib)($|[/\\])|(^|[/\\])\.(hg|git|bzr)($|[/\\])'
 
