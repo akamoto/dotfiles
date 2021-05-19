@@ -34,3 +34,5 @@ fi
 # aliases
 
 alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox -P"
+
+[ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ] && source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash

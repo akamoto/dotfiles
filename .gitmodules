@@ -49,3 +49,9 @@
 [submodule "vim/pack/syntax/start/youcompleteme"]
 	path = vim/pack/syntax/start/youcompleteme
 	url = https://github.com/valloric/youcompleteme
+[submodule "vim/pack/base/start/rhubarb"]
+	path = vim/pack/base/start/rhubarb
+	url = https://github.com/tpope/vim-rhubarb
+[submodule "vim/pack/base/start/fugitive-gitlab"]
+	path = vim/pack/base/start/fugitive-gitlab
+	url = https://github.com/shumphrey/fugitive-gitlab.vim

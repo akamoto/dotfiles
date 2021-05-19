@@ -68,7 +68,8 @@ cnoremap <C-L> <Right>
 nnoremap <Leader>z :GundoToggle<CR>
 " unset hilightsearch
 nnoremap <leader><space> :noh<cr>
-nnoremap <leader>c :set cursorline! cursorcolumn!<cr>
+" overwrites spec log
+"nnoremap <leader>c :set cursorline! cursorcolumn!<cr>
 
 " TODO: interferes with jumplist navigation
 "nnoremap <tab> %  " jumps to next enclosure
@@ -142,6 +143,7 @@ endif
 "map <F5> <ESC> call findindent#do()<CR>
 " fugitive
 nnoremap <leader>g :G<cr>
+nnoremap <leader>gp :Gpush<cr>
 
 nnoremap <leader>n :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.un\~$', '\~$', '^\.git$', '^.svn$', '^blib$', '^_build$', 'pm_to_blib', '\.o$', '\.class$', '\.pyc$']
@@ -178,10 +180,12 @@ autocmd BufWritePre * :%s/\s\+$//e
 autocmd BufWritePre /tmp/mutt-* :%s/^--$/--\ /e
 autocmd FileType yaml setlocal shiftwidth=2 tabstop=2
 autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+autocmd BufRead,BufNewFile *.pp set filetype=ruby
+
 
 "terraform
-autocmd BufNewFile,BufRead *.tf setlocal ts=2 sw=2 sts=2
-autocmd BufWritePost *.tf !terraform fmt %
+autocmd BufNewFile,BufRead *.tf,*.tfvars setlocal ts=2 sw=2 sts=2
+autocmd BufWritePost *.tf,*.tfvars !terraform_0.14.6 fmt %
 
 "set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/blib/*
 set wildignore+=.hg,.git,.svn                    " Version control
@@ -203,11 +207,12 @@ set backupskip=/tmp/*,/private/tmp/*"
 " Resize splits when the window is resized
 au VimResized * exe "normal! \<c-w>="
 
-
 set undodir=~/.vim/tmp/undo/     " undo files
 set backupdir=~/.vim/tmp/backup/ " backups
 set directory=~/.vim/tmp/swap/   " swap files
 set backup                       " enable backups
+
+
 
 " EasyMotion
 let g:EasyMotion_do_mapping = 0
