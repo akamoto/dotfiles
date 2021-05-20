@@ -24,3 +24,7 @@ then
         export_agent
     fi
 fi
+
+alias bt='blueman-manager &'
+alias pc='pavucontrol &'
+
