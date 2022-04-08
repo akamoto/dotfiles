@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo "running with:
+path: $1
+replace-ref-with: $2
+
+command: grep -lr dc-modules $1 | while read filename; do sed -i '' "s/\?ref=.*\"/?ref=$2\"/" \$filename; done
+
+confirm [y/N]: "
+read yesno
+
+if [[ "$yesno" =~ [Yy] ]]
+then
+    grep -lr dc-modules $1 | while read filename; do sed -i '' "s/\?ref=.*\"/?ref=$2\"/" $filename; done
+fi

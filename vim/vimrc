@@ -69,7 +69,7 @@ nnoremap <Leader>z :GundoToggle<CR>
 " unset hilightsearch
 nnoremap <leader><space> :noh<cr>
 " overwrites spec log
-"nnoremap <leader>c :set cursorline! cursorcolumn!<cr>
+nnoremap <leader>cl :set cursorline! cursorcolumn!<cr>
 
 " TODO: interferes with jumplist navigation
 "nnoremap <tab> %  " jumps to next enclosure
@@ -142,8 +142,10 @@ endif
 
 "map <F5> <ESC> call findindent#do()<CR>
 " fugitive
-nnoremap <leader>g :G<cr>
-nnoremap <leader>gp :Gpush<cr>
+nnoremap <leader>g :Git<cr>
+nnoremap <leader>gp :Git push<cr>
+nnoremap <leader>gb :GBrowse<cr>
+nnoremap <leader>gb1 :GBrowse!<cr>
 
 nnoremap <leader>n :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.un\~$', '\~$', '^\.git$', '^.svn$', '^blib$', '^_build$', 'pm_to_blib', '\.o$', '\.class$', '\.pyc$']
@@ -230,3 +232,4 @@ onoremap <silent> <Leader>T      :call EasyMotion#T(0, 1)<CR>
 
 let spec_chglog_format = "%a %b %d %Y Markus Mueller <mm@rbfh.de>"
 
+source ~/.vimrc.local

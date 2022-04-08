@@ -35,4 +35,9 @@ fi
 
 alias ffp="/Applications/Firefox.app/Contents/MacOS/firefox -P"
 
+# fucking invisible files ending up in tarfiles...
+# https://stackoverflow.com/questions/8766730/tar-command-in-mac-os-x-adding-hidden-files-why
+export COPYFILE_DISABLE=true
+
+
 [ -f /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash ] && source /Library/Developer/CommandLineTools/usr/share/git-core/git-completion.bash

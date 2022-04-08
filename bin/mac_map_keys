@@ -14,17 +14,13 @@
 #    "HIDKeyboardModifierMappingSrc":0x700000039,
 #    "HIDKeyboardModifierMappingDst":0x70000006d},
 
-# swap paragraph and tilde on internal keyboard
+# swap paragraph and tilde on internal keyboard - only needed for ISO layouts
 # map capslock to F18 on internal keyboard
 hidutil property --matching '{"ProductID": 0x27b}' --set '{"UserKeyMapping":[
-{ "HIDKeyboardModifierMappingSrc":0x700000035,
-  "HIDKeyboardModifierMappingDst":0x700000064},
-{ "HIDKeyboardModifierMappingSrc":0x700000064,
-  "HIDKeyboardModifierMappingDst":0x700000035},
 {
     "HIDKeyboardModifierMappingSrc":0x700000039,
-    "HIDKeyboardModifierMappingDst":0x70000006d}
-]}'
+    "HIDKeyboardModifierMappingDst":0x70000006d
+}]}'
 
 ############################
 # swap map paragraph to tilde on magic keyboard
@@ -32,40 +28,40 @@ hidutil property --matching '{"ProductID": 0x27b}' --set '{"UserKeyMapping":[
 hidutil property --matching '{"ProductID":0x26c}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x700000076,
-    "HIDKeyboardModifierMappingDst":0x700000050},
-{
+    "HIDKeyboardModifierMappingDst":0x700000050
+},{
     "HIDKeyboardModifierMappingSrc":0x700000039,
-    "HIDKeyboardModifierMappingDst":0x70000006d}
-{
+    "HIDKeyboardModifierMappingDst":0x70000006d
+},{
     "HIDKeyboardModifierMappingSrc":0x700000039,
-    "HIDKeyboardModifierMappingDst":0x70000006d}
-]}'
+    "HIDKeyboardModifierMappingDst":0x70000006d
+}]}'
 
 # hp keyboard work
 hidutil property --matching '{"ProductID":0x24}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x7000000e2,
-    "HIDKeyboardModifierMappingDst":0x7000000e3},
-{
+    "HIDKeyboardModifierMappingDst":0x7000000e3
+},{
     "HIDKeyboardModifierMappingSrc":0x7000000e3,
-    "HIDKeyboardModifierMappingDst":0x7000000e2}
-{
+    "HIDKeyboardModifierMappingDst":0x7000000e2
+},{
     "HIDKeyboardModifierMappingSrc":0x700000039,
-    "HIDKeyboardModifierMappingDst":0x70000006d}
-]}'
+    "HIDKeyboardModifierMappingDst":0x70000006d
+}]}'
 
 # cherry keyboard home
 hidutil property --matching '{"ProductID":0x11}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x7000000e2,
-    "HIDKeyboardModifierMappingDst":0x7000000e3},
-{
+    "HIDKeyboardModifierMappingDst":0x7000000e3
+},{
     "HIDKeyboardModifierMappingSrc":0x7000000e3,
-    "HIDKeyboardModifierMappingDst":0x7000000e2}
-{
+    "HIDKeyboardModifierMappingDst":0x7000000e2
+},{
     "HIDKeyboardModifierMappingSrc":0x700000039,
-    "HIDKeyboardModifierMappingDst":0x70000006d}
-]}'
+    "HIDKeyboardModifierMappingDst":0x70000006d
+}]}'
 
 # use karabiner-elements for now - doesnt seem to work...
 # durgod keyboard home
@@ -76,27 +72,27 @@ hidutil property --matching '{"ProductID":0x11}' --set '{"UserKeyMapping":[
 hidutil property --matching '{"ProductID":0x82}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x7000000e3,
-    "HIDKeyboardModifierMappingDst":0x7001000e2},
-{
+    "HIDKeyboardModifierMappingDst":0x7001000e2
+},{
     "HIDKeyboardModifierMappingSrc":0x7000000e2,
-    "HIDKeyboardModifierMappingDst":0x7000000e3},
-{
+    "HIDKeyboardModifierMappingDst":0x7000000e3
+},{
     "HIDKeyboardModifierMappingSrc":0x700000039,
-    "HIDKeyboardModifierMappingDst":0x70000006d}
-]}'
+    "HIDKeyboardModifierMappingDst":0x70000006d
+}]}'
 
 # tenkeyless gpc
 hidutil property --matching '{"ProductID":0x652f}' --set '{"UserKeyMapping":[
 {
     "HIDKeyboardModifierMappingSrc":0x7000000e3,
-    "HIDKeyboardModifierMappingDst":0x7001000e2},
-{
+    "HIDKeyboardModifierMappingDst":0x7001000e2
+},{
     "HIDKeyboardModifierMappingSrc":0x7000000e2,
-    "HIDKeyboardModifierMappingDst":0x7000000e3},
-{
+    "HIDKeyboardModifierMappingDst":0x7000000e3
+},{
     "HIDKeyboardModifierMappingSrc":0x700000039,
-    "HIDKeyboardModifierMappingDst":0x70000006d}
-]}'
+    "HIDKeyboardModifierMappingDst":0x70000006d
+}]}'
 
 # magic keyboard as according to hammerspoon
 #-- show keyevents

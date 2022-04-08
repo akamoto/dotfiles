@@ -24,6 +24,7 @@
     unstage = reset HEAD --
     dc = diff --cached
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %Cblue<%an>%Creset' --abbrev-commit --date=relative --all
+	gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
 [color]
     ui = true
 [credential]
@@ -49,3 +50,5 @@
 path = ~/.gitconfig.local
 [pull]
 	rebase = true
+
+#[ includeIf "gitdir:~/Development/work/" ]
