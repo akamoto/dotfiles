@@ -55,3 +55,12 @@
 [submodule "vim/pack/base/start/fugitive-gitlab"]
 	path = vim/pack/base/start/fugitive-gitlab
 	url = https://github.com/shumphrey/fugitive-gitlab.vim
+[submodule "nvim/pack/colors/start/gruvbox.nvim"]
+	path = nvim/pack/colors/start/gruvbox.nvim
+	url = https://github.com/ellisonleao/gruvbox.nvim
+[submodule "nvim/pack/base/start/nvim-tmux-navigation"]
+	path = nvim/pack/base/start/nvim-tmux-navigation
+	url = https://github.com/alexghergh/nvim-tmux-navigation
+[submodule "nvim/pack/base/start/nvim-tree.lua"]
+	path = nvim/pack/base/start/nvim-tree.lua
+	url = https://github.com/nvim-tree/nvim-tree.lua

@@ -6,11 +6,9 @@ default.prefix = https://
 #ops-vcs.prefix = https://foo.bar
 #ops-vcs.username =
 #ops-vcs.password =
-ops-vcs.username = markus.mueller
-ops-vcs.password =
 
 [ui]
-username = Markus Mueller <mm@rbfh.de>
+#username =
 merge = vimdiff
 
 [hostsecurity]
