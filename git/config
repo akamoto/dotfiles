@@ -1,4 +1,4 @@
-# include in ~/.gitconfig.local
+# include in ~/.gitconfig_local
 #[user]
 #    name = <user>
 #    email = <email>
@@ -50,7 +50,7 @@
     untracked = cyan
 
 [include]
-path = ~/.gitconfig.local
+path = ~/.gitconfig_local
 [pull]
     rebase = true
 
