@@ -15,6 +15,7 @@ declare -A files=(
 
 declare -A dirfiles=(
   [.w3m/config]=$dotdir/w3m/config
+  [.config/nvim/init.lua]=$dotdir/nvim/init.lua
 )
 
 declare -A files_mac=(

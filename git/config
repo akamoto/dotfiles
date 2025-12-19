@@ -1,15 +1,20 @@
-[user]
-    name = Markus Mueller
-    email = moto@rbfh.de
+# include in ~/.gitconfig.local
+#[user]
+#    name = <user>
+#    email = <email>
+#
+#[url "https://oauth2:token@<url>/"]
+#    insteadOf = https://<url>/
+#
 
 [push]
-	default = current
+    default = current
 
 [core]
-	trustctime = false
-	editor = vim
-	excludesfile = ~/.dotfiles/git/ignore
-	#filemode = false # in case the file flags are all over (e.g. where modified on windows before)
+    trustctime = false
+    editor = vim
+    excludesfile = ~/.dotfiles/git/ignore
+    #filemode = false # in case the file flags are all over (e.g. where modified on windows before)
 
 [alias]
     s = status
@@ -38,17 +43,16 @@
     prompt = false
     trustexitcode = false
 
-#[url "https://oauth2:token@gitlab.wirecard-cloud.com/"]
-#    insteadOf = https://gitlab.wirecard-cloud.com/
 
 [color "branch"]
-	remote = cyan
+    remote = cyan
 [color "status"]
-	untracked = cyan
+    untracked = cyan
 
 [include]
 path = ~/.gitconfig.local
 [pull]
-	rebase = true
+    rebase = true
 
+# conditional includes if per-repo settings are wanted
 #[ includeIf "gitdir:~/Development/work/" ]

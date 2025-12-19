@@ -50,7 +50,7 @@ export PATH=$PATH:~/.bin/
 #source pyenv/bin/activate
 
 # exports
-export EDITOR=vim
+export EDITOR=nvim
 # # See: http://wiki.bash-hackers.org/scripting/debuggingtips#making_xtrace_more_useful
 export PS4='+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
 #export PERL5LIB=lib:$PERL5LIB
@@ -114,7 +114,7 @@ alias s=ssh
 alias st='ssh -t moto t'
 alias motot='s -t moto t'
 
-alias vi=vim
+alias vi=nvim
 alias ls="ls -FC"
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
