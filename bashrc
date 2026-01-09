@@ -216,3 +216,8 @@ if [ "$(uname)" == Darwin ]; then
 else
     source ~/.dotfiles/bashrc_linux
 fi
+
+if [ -f ~/.bashrc_local ]
+then
+    source ~/.bashrc_local
+fi

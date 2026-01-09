@@ -1,0 +1,19 @@
+" vim: filetype=vim
+" theme
+
+" syntastic
+
+packadd syntastic
+
+" vim-airline
+let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+packadd tmuxline.vim
+packadd vim-airline-theme
+packadd vim-airline
+colorscheme gruvbox8
+
+packadd ctrlp.vim
+packad ale
+packadd UltiSnips
+

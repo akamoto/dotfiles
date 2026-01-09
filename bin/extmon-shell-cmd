@@ -1,0 +1,8 @@
+#!/bin/sh
+
+
+font_1980x1020="ProggyCleanSZNerdFontMono:size=15:antialias=false:autohint=false"
+font="ProggyCleanSZNerdFontMono:size=15:antialias=false:autohint=false:lcdfilter=false"
+
+
+$HOME/.bin/st-1x1 -f $font

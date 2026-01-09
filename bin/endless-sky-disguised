@@ -1,0 +1,25 @@
+#!/bin/sh
+
+#EDIT THIS to point to your save file directory...
+save_dir=$HOME/.local/share/endless-sky/saves
+save_file=`ls -t $save_dir | head -1`
+save_path=$save_dir/$save_file
+
+echo
+echo using save file: "$save_path"
+echo
+
+listthem() {
+    grep -A 2 "Disguised $badguytype" "$save_path" | grep description |\
+    sed -r "s/.*(named|known as) the (.*) is .* (near the .*system).*(return to .*) for payment (.*)/'\2' ($badguytype) \3 \4 \5/"
+}
+
+#name "Marauders near Atria"
+#description "A fleet of Marauder ships, led by a vessel named the Mortzestus, has been attacking merchants near the Atria system. Destroy the whole fleet and return to Lichen for payment (475,000 credits)."
+
+for badguytype in bandit pirate warlord
+do
+    listthem
+done | sort
+
+echo

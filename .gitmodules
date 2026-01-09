@@ -64,3 +64,36 @@
 [submodule "nvim/pack/base/start/nvim-tree.lua"]
 	path = nvim/pack/base/start/nvim-tree.lua
 	url = https://github.com/nvim-tree/nvim-tree.lua
+[submodule "nvim/pack/base/start/vim-fugitive"]
+	path = nvim/pack/base/start/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "nvim/pack/base/start/vim-surround"]
+	path = nvim/pack/base/opt/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "nvim/pack/syntax/start/nvim-treesitter"]
+	path = nvim/pack/syntax/start/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "nvim/pack/base/start/telescope.nvim"]
+	path = nvim/pack/telescope/start/telescope.nvim
+	url = https://github.com/nvim-telescope/telescope.nvim
+[submodule "nvim/pack/telescope/start/plenary.nvim"]
+	path = nvim/pack/telescope/start/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "nvim/pack/telescope/start/ripgrep"]
+	path = nvim/pack/telescope/start/ripgrep
+	url = https://github.com/BurntSushi/ripgrep
+[submodule "nvim/pack/telescope/start/telescope-fzf-native.nvim"]
+	path = nvim/pack/telescope/start/telescope-fzf-native.nvim
+	url = https://github.com/nvim-telescope/telescope-fzf-native.nvim
+[submodule "nvim/pack/syntax/start/blink.cmp"]
+	path = nvim/pack/syntax/start/blink.cmp
+	url = https://github.com/Saghen/blink.cmp
+[submodule "nvim/pack/base/opt/neogit"]
+	path = nvim/pack/base/opt/neogit
+	url = https://github.com/NeogitOrg/neogit
+[submodule "nvim/pack/base/start/focus.nvim"]
+	path = nvim/pack/base/start/focus.nvim
+	url = https://github.com/nvim-focus/focus.nvim
+[submodule "nvim/pack/base/start/nvim-lastplace"]
+	path = nvim/pack/base/start/nvim-lastplace
+	url = https://github.com/ethanholz/nvim-lastplace
